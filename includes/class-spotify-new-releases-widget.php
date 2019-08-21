@@ -44,6 +44,8 @@ class Spotify_New_Releases_Widget extends WP_Widget {
 			<div class="content">
 				<span class="loading">
 					<marquee behavior="alternate">Loading...</marquee>
+					Client ID: <?php echo SPOTIFY_NEW_RELEASES_CLIENT_ID; ?>
+					Client Secret: <?php echo SPOTIFY_NEW_RELEASES_CLIENT_SECRET; ?>
 				</span>
 			</div>
 		<?php

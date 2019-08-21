@@ -65,6 +65,11 @@ register_deactivation_hook( __FILE__, 'deactivate_spotify_new_releases' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-spotify-new-releases.php';
 
 /**
+ * The credentials needed for Spotify Web API.
+ */
+require plugin_dir_path( __FILE__ ) . '/credentials.php';
+
+/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,

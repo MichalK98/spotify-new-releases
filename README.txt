@@ -112,3 +112,9 @@ Markdown uses email style notation for blockquotes and I've been told:
 > Asterisks for *emphasis*. Double it up  for **strong**.
 
 `<?php code(); // goes in backticks ?>`
+
+Add credentials.php in the root.
+<?php
+
+define('SPOTIFY_NEW_RELEASES_CLIENT_ID', 'code');
+define('SPOTIFY_NEW_RELEASES_CLIENT_SECRET', 'code');
