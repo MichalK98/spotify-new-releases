@@ -79,6 +79,8 @@ class Spotify_New_Releases {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		$this->register_widget();
+
 	}
 
 	/**
@@ -121,7 +123,13 @@ class Spotify_New_Releases {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-spotify-new-releases-public.php';
-
+		
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-spotify-new-releases-widget.php';
+		
 		$this->loader = new Spotify_New_Releases_Loader();
 
 	}
@@ -173,6 +181,17 @@ class Spotify_New_Releases {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register the widget for the plugin.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_widget() {
+		add_action('widgets_init', function(){
+			register_widget('Spotify_New_Releases_Widget');
+		});
 	}
 
 	/**
