@@ -247,6 +247,20 @@ class Spotify_New_Releases {
 		// decode $body
 		$body = json_decode(wp_remote_retrieve_body($response));
 		// Få ut endast url genom $body->url
+
+		// 1. Find out path from URL
+		$url_path = parse_url($body->url, PHP_URL_PATH);
+		
+		// 2. Find the file extension from path
+		$file_extension = pathinfo($url_path, PATHINFO_EXTENSION);
+		var_dump([
+			'path' => $url_path,
+			'file_extension' => $file_extension,
+		]);
+		wp_die();
+
+		// 3. If extension is 'mp4/ogv/avi' set type to viedo
+
 		wp_send_json_success([
 			'type' => 'image/video',
 			'src' => $body->url,
