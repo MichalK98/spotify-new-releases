@@ -247,7 +247,10 @@ class Spotify_New_Releases {
 		// decode $body
 		$body = json_decode(wp_remote_retrieve_body($response));
 		// Få ut endast url genom $body->url
-		wp_send_json_success($body->url);
+		wp_send_json_success([
+			'type' => 'image/video',
+			'src' => $body->url,
+		]);
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
