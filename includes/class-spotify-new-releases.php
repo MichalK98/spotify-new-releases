@@ -244,8 +244,10 @@ class Spotify_New_Releases {
 				// testa ändra SPOTIFY_RANDOM_DOG__GET_URL för att se om det funkar
 			]);
 		}
-
-		wp_send_json_success("OK");
+		// decode $body
+		$body = json_decode(wp_remote_retrieve_body($response));
+		// Få ut endast url genom $body->url
+		wp_send_json_success($body->url);
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
