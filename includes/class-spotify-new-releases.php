@@ -253,16 +253,19 @@ class Spotify_New_Releases {
 		
 		// 2. Find the file extension from path
 		$file_extension = pathinfo($url_path, PATHINFO_EXTENSION);
-		var_dump([
-			'path' => $url_path,
-			'file_extension' => $file_extension,
-		]);
-		wp_die();
 
 		// 3. If extension is 'mp4/ogv/avi' set type to viedo
+		$video_extensions = ['mp4', 'ogv', 'avi'];
+		$is_video = in_array(strtolower($file_extension), $video_extensions);
+		
+		if ($is_video) {
+			$type = "video";
+		} else {
+			$type = "image";
+		}
 
 		wp_send_json_success([
-			'type' => 'image/video',
+			'type' => $type,
 			'src' => $body->url,
 		]);
 	}
