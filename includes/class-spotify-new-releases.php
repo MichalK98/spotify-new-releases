@@ -256,13 +256,10 @@ class Spotify_New_Releases {
 
 		// 3. If extension is 'mp4/ogv/avi' set type to viedo
 		$video_extensions = ['mp4', 'ogv', 'avi'];
-		$is_video = in_array(strtolower($file_extension), $video_extensions);
 		
-		if ($is_video) {
-			$type = "video";
-		} else {
-			$type = "image";
-		}
+		$type = in_array(strtolower($file_extension), $video_extensions)
+			? "video"
+			: "image";
 
 		wp_send_json_success([
 			'type' => $type,
