@@ -97,7 +97,9 @@ class Spotify_New_Releases_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/spotify-new-releases-public.js', array( 'jquery' ), $this->version, true );
-
+		wp_localize_script($this->plugin_name, 'spotify_dog_ajax_obj', [
+			'ajax_url' => admin_url('admin-ajax.php'),
+			]);
 	}
 
 }
