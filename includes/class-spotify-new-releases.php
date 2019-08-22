@@ -226,8 +226,26 @@ class Spotify_New_Releases {
 	 * @since    1.0.0
 	 */
 	public function ajax_spotify_dog__get() {
-		echo "much wow, much music";
-		wp_die();
+		$response = wp_remote_get(SPOTIFY_RANDOM_DOG__GET_URL);
+		// Nu vill vi kolla om det gick fel.
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) != 200) {
+			// wp_send_json_error tar emot 1 param ($data)
+			// den kommer retunera ett json objekt
+			// {
+			// "success": false,
+			// "data": "nope"
+			//}
+			wp_send_json_error([
+				// skickar in key value
+				// få ut error koden
+				'error_code' => wp_remote_retrieve_response_code($response),
+				// få ut error msg
+				'error_msg' => wp_remote_retrieve_response_message($response),
+				// testa ändra SPOTIFY_RANDOM_DOG__GET_URL för att se om det funkar
+			]);
+		}
+
+		wp_send_json_success("OK");
 	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
