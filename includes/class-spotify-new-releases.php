@@ -79,8 +79,11 @@ class Spotify_New_Releases {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		// Register widget
 		$this->register_widget();
 
+		// Register ajax actions
+		$this->register_ajax_actions();
 	}
 
 	/**
@@ -194,6 +197,38 @@ class Spotify_New_Releases {
 		});
 	}
 
+	/**
+	 * Register the ajax actions.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_ajax_actions() {
+		// POSTMAN
+		// POST http://plugins.test/wp-admin/admin-ajax.php
+		// action | spotify_dog__get
+
+		// register action 'spotify_dog__get'
+		// alla wp ajax actions registreras med 'wp_ajax_' fölt av namnet på action 'spotify_dog__get'
+		add_action('wp_ajax_spotify_dog__get', [
+			$this,
+			'ajax_spotify_dog__get'
+		]);
+		// inte inloggad
+		add_action('wp_ajax_nopriv_spotify_dog__get', [
+			$this,
+			'ajax_spotify_dog__get'
+		]);
+	}
+
+	/**
+	 * Respond to ajax action 'spotify_dog__get'.
+	 *
+	 * @since    1.0.0
+	 */
+	public function ajax_spotify_dog__get() {
+		echo "much wow, much music";
+		wp_die();
+	}
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
