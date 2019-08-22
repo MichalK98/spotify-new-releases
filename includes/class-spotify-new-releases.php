@@ -260,7 +260,7 @@ class Spotify_New_Releases {
 		$is_video = in_array(strtolower($file_extension), $video_extensions);
 
 		wp_send_json_success([
-			'type' => $is_video ? "video" : "image",
+			'type' => $is_video ? "video/mp4" : "image",
 			'is_video' => $is_video,
 			'is_image' => !$is_video,
 			'src' => $body->url,
