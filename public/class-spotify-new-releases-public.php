@@ -96,7 +96,7 @@ class Spotify_New_Releases_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/spotify-new-releases-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/spotify-new-releases-public.js', array( 'jquery' ), $this->version, true );
 
 	}
 
